@@ -1,4 +1,4 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable, Scope, UnauthorizedException } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { InjectRepository } from '@nestjs/typeorm';
 import { randomBytes } from 'crypto';
@@ -8,7 +8,7 @@ import { hashSecret } from 'src/common/utils/hash.util';
 import { SessionEntity } from 'src/modules/user/entities/session.entity';
 import { Repository } from 'typeorm';
 
-@Injectable()
+@Injectable({scope:Scope.REQUEST})
 export class SessionService {
       private readonly CACHE_EXPIRE_SECONDS = 60 * 5;
       private readonly SESSION_EXPIRE_DAYS = 7;

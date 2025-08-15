@@ -5,6 +5,7 @@ import { TypeOrmDbConfig } from './configs/typeorm.config';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { RedisModule } from './modules/redis/redis.module';
+import { WalletModule } from './modules/wallet/wallet.module';
 const ExternalModule = [
   ConfigModule.forRoot({
     isGlobal: true,
@@ -22,6 +23,7 @@ const ExternalModule = [
     }),
     UserModule,
     AuthModule,
+    WalletModule,
    
   ],
 })
