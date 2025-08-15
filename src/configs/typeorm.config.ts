@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { join } from 'path';
 
 export class TypeOrmDbConfig implements TypeOrmOptionsFactory {
   createTypeOrmOptions(
@@ -11,7 +12,7 @@ export class TypeOrmDbConfig implements TypeOrmOptionsFactory {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities:['modules/**/*.entity.{ts,js}'],
+      entities: [join(__dirname, '../modules/**/*.entity.{ts,js}')],
       synchronize: true,
     };
   }
