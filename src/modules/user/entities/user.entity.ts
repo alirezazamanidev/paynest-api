@@ -1,4 +1,5 @@
 import { BaseEntity } from 'src/common/abstracts/baseEntity';
+import { RoleEnum } from 'src/common/enums/role.enum';
 import { Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
 
 @Entity('user')
@@ -13,6 +14,8 @@ export class UserEntity extends BaseEntity {
   phone: string;
   @Column({ default: false })
   isEmailVerified: boolean;
+  @Column({type:'enum',enum:RoleEnum,default:RoleEnum.User})
+  role:string
   @Column({ default: false })
   isPhoneVerified: boolean;
   @CreateDateColumn()

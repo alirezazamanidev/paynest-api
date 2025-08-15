@@ -4,7 +4,6 @@ import { UserEntity } from '../../user/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CheckOtpDto, SignInDto, SignUpDto } from '../dtos/auth.dto';
 
-import { randomInt } from 'crypto';
 import { comparePassword, hashPassword } from 'src/common/utils/hash.util';
 import { OtpService } from './otp.service';
 import { SessionService } from './session.service';

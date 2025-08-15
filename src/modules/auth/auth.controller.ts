@@ -1,6 +1,7 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './services/auth.service';
 import {
+  ApiBearerAuth,
   ApiConsumes,
   ApiCreatedResponse,
   ApiOkResponse,
@@ -10,6 +11,9 @@ import {
 } from '@nestjs/swagger';
 import { CheckOtpDto, SignInDto, SignUpDto } from './dtos/auth.dto';
 import { ContentTypeEnum } from 'src/common/enums/form.enum';
+import { AuthGuard } from './guards/auth.guard';
+import type { Request } from 'express';
+import { Auth } from './decorators/auth.decurator';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -42,5 +46,12 @@ export class AuthController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async checkOtp(@Body() checkOtpDto: CheckOtpDto) {
     return this.authService.checkOtp(checkOtpDto);
+  }
+
+  @ApiOperation({summary:"get user profile"})
+  @Auth()
+  @Get('profile')
+  getProfile(@Req() request:Request) {
+    return request.user;
   }
 }

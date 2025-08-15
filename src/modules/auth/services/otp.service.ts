@@ -6,7 +6,7 @@ import Redis from 'ioredis';
 @Injectable()
 export class OtpService {
   private readonly Otp_expiration_minutes =
-    process.env.OTP_EXPIRATION_MINUTES || '5';
+    process.env.OTP_EXPIRATION_MINUTES || 5
   constructor(
     @Inject('REDIS_CLIENT') private readonly redisClient: Redis,
   ) {}
@@ -21,7 +21,7 @@ export class OtpService {
 
     await this.redisClient.setex(
       `otp:${value}`,
-      parseInt(this.Otp_expiration_minutes) * 60,
+      this.Otp_expiration_minutes * 60,
       code
     );
     return code;
