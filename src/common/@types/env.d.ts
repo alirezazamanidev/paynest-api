@@ -12,6 +12,8 @@ declare global {
       DB_DATABASE: string;
       //REDIS
       REDIS_URL: string;
+      // Auth
+      OTP_EXPIRATION_MINUTES:number
     }
   }
 }

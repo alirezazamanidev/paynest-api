@@ -11,6 +11,7 @@ const ExternalModule = [
     isGlobal: true,
   }),
   CacheModule.registerAsync({
+    isGlobal:true,
     useFactory: async()=>({
       stores:[createKeyv(process.env.REDIS_URL)],
     }),
